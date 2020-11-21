@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Nikki</string>
+    <string name="edit_location">Lokasi</string>
+    <string name="edit_Description">Deskripsi</string>
+    <string name="edit_Title">Judul</string>
+    <string name="get_loc_button">Ambil Lokasi</string>
+    <string name="title_edit_diary">Sunting Diary</string>
+    <string name="add_title_diary">Tambah Diary</string>
+</resources>

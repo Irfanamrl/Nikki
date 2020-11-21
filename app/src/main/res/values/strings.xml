@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name" translatable="false">Nikki</string>
+    <string name="edit_Title">Title</string>
+    <string name="edit_Description">Description</string>
+    <string name="edit_location">Location</string>
+    <string name="get_loc_button">Get Location</string>
+    <string name="title_edit_diary">Edit Diary</string>
+    <string name="add_title_diary">Add Diary</string>
+</resources>
