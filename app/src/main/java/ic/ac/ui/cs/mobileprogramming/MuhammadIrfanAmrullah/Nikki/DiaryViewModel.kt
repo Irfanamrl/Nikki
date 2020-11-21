@@ -1,4 +1,4 @@
-package com.example.nikki
+package ic.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

@@ -7,4 +7,5 @@
     <string name="get_loc_button">Ambil Lokasi</string>
     <string name="title_edit_diary">Sunting Diary</string>
     <string name="add_title_diary">Tambah Diary</string>
+    <string name="input_feedback" translatable="false">Tolong isi inputnya</string>
 </resources>

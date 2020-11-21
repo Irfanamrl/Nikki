@@ -1,10 +1,11 @@
-package com.example.nikki
+package ic.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki
 
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import ic.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.R
 
 class ReminderBroadcast : BroadcastReceiver() {
 

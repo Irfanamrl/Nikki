@@ -1,4 +1,4 @@
-package com.example.nikki
+package ic.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.example.nikki", appContext.packageName)
+        assertEquals("ic.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki", appContext.packageName)
     }
 }

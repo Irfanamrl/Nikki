@@ -1,6 +1,5 @@
-package com.example.nikki
+package ic.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.Resources
@@ -8,8 +7,6 @@ import android.location.Address
 import android.location.Geocoder
 import android.location.Location
 import android.os.Bundle
-import android.text.Html
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -19,22 +16,21 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.text.HtmlCompat
-import com.example.nikki.R.drawable
+import ic.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.R
+import ic.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.R.drawable
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import java.io.IOException
 import java.util.*
-import java.util.jar.Manifest
 
 class AddEditDiaryActivity : AppCompatActivity() {
     companion object {
-        var EXTRA_ID : String = "com.example.nikki.EXTRA_ID"
-        var EXTRA_TITLE : String = "com.example.nikki.EXTRA_TITLE"
-        var EXTRA_DESCRIPTION : String = "com.example.nikki.EXTRA_DESCRIPTION"
-        var EXTRA_LOCATION : String = "com.example.nikki.EXTRA_LOCATION"
+        var EXTRA_ID : String = "ic.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.EXTRA_ID"
+        var EXTRA_TITLE : String = "ic.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.EXTRA_TITLE"
+        var EXTRA_DESCRIPTION : String = "ic.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.EXTRA_DESCRIPTION"
+        var EXTRA_LOCATION : String = "ic.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.EXTRA_LOCATION"
     }
 
     private var editTextTitle: EditText? = null
@@ -66,12 +62,12 @@ class AddEditDiaryActivity : AppCompatActivity() {
 
         val intent : Intent = intent
         if (intent.hasExtra(EXTRA_ID)) {
-            title = Resources.getSystem().getString(R.string.title_edit_diary)
+            title = getString(R.string.title_edit_diary)
             editTextTitle?.setText(intent.getStringExtra(EXTRA_TITLE))
             editTextDescription?.setText(intent.getStringExtra(EXTRA_DESCRIPTION))
             editTextLocation?.text = intent.getStringExtra(EXTRA_LOCATION)
         } else {
-            title = Resources.getSystem().getString(R.string.add_title_diary)
+            title = getString(R.string.add_title_diary)
         }
 
 
@@ -83,7 +79,7 @@ class AddEditDiaryActivity : AppCompatActivity() {
         var location : String = editTextLocation?.text.toString()
 
         if (title.trim().isEmpty() || description.trim().isEmpty() || location.trim().isEmpty()){
-            Toast.makeText(this, "Tolong masukkan input", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.input_feedback), Toast.LENGTH_SHORT).show()
             return
         }
 

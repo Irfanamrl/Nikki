@@ -1,10 +1,11 @@
-package com.example.nikki
+package ic.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import ic.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.R
 
 class DiaryAdapter : RecyclerView.Adapter<DiaryAdapter.DiaryHolder>() {
 

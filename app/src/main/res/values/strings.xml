@@ -6,4 +6,12 @@
     <string name="get_loc_button">Get Location</string>
     <string name="title_edit_diary">Edit Diary</string>
     <string name="add_title_diary">Add Diary</string>
+    <string name="input_feedback">Please fill the input</string>
+    <string name="deleted_diary">Diary has been deleted</string>
+    <string name="saved_diary">Diary saved!</string>
+    <string name="fail_update">Diary can\'t be updated</string>
+    <string name="updated_diary">Diary updated!</string>
+    <string name="fail_updated_diary">Diary had not been updated</string>
+    <string name="all_deleted">All Diary had been deleted</string>
+    <string name="notification_desc">It\'s time to write your Diary again</string>
 </resources>

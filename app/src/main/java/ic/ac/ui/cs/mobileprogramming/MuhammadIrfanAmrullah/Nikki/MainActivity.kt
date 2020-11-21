@@ -1,4 +1,4 @@
-package com.example.nikki
+package ic.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki
 
 import android.app.AlarmManager
 import android.app.NotificationChannel
@@ -8,7 +8,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -18,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import ic.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
                     diaryViewModel?.deleteDiary(adapter.getDiaryAt(viewHolder.adapterPosition))
                     Toast.makeText(
                         this@MainActivity,
-                        "Diary dihapus",
+                        getString(R.string.deleted_diary),
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -103,13 +103,13 @@ class MainActivity : AppCompatActivity() {
             val diary = Diary(title = title, description = description, location = location)
             diaryViewModel?.insertDiary(diary)
 
-            Toast.makeText(this, "Diary berhasil disimpan", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.saved_diary), Toast.LENGTH_SHORT).show()
 
         } else if (requestCode == EDIT_NOTE_REQUEST && resultCode == RESULT_OK) {
             var id : Int? = data?.getIntExtra(AddEditDiaryActivity.EXTRA_ID, -1)
 
             if (id == -1) {
-                Toast.makeText(this, "Diary can't be updated", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.fail_update), Toast.LENGTH_SHORT).show()
                 return
             }
 
@@ -122,10 +122,10 @@ class MainActivity : AppCompatActivity() {
                 diary.id = id
             }
             diaryViewModel?.updateDiary(diary)
-            Toast.makeText(this, "Diary berhasil diupdate", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.updated_diary), Toast.LENGTH_SHORT).show()
 
         } else {
-            Toast.makeText(this, "Diary gagal disimpan", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.fail_updated_diary), Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -139,7 +139,7 @@ class MainActivity : AppCompatActivity() {
         return when(item.itemId) {
             R.id.delete_all_diary -> {
                 diaryViewModel?.deleteAllDiaries()
-                Toast.makeText(this, "Semua diary dihapus", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.all_deleted), Toast.LENGTH_SHORT).show()
                 true
             } else -> {
                 super.onOptionsItemSelected(item)
@@ -174,7 +174,7 @@ class MainActivity : AppCompatActivity() {
         // the NotificationChannel class is new and not in the support library
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name = "NikkiReminderChannel"
-            val descriptionText = "Channel for Nikki Reminder"
+            val descriptionText = getString(R.string.notification_desc)
             val importance = NotificationManager.IMPORTANCE_DEFAULT
             val channel = NotificationChannel("notifyNikki", name, importance).apply {
                 description = descriptionText
