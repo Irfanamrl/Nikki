@@ -41,6 +41,6 @@
             android:parentActivityName=".MainActivity" />
 
         <receiver android:name=".ReminderBroadcast" />
+        <service android:name=".CountDownTimerService"/>
     </application>
-
 </manifest>

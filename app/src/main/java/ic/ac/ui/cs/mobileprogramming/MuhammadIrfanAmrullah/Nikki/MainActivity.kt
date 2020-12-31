@@ -4,13 +4,15 @@ import android.app.AlarmManager
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import android.net.NetworkInfo
 import android.os.Build
 import android.os.Bundle
+import android.telephony.TelephonyManager
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -21,9 +23,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import ic.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import java.lang.Exception
 
 
 class MainActivity : AppCompatActivity() {
@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         try {
             internet = isOnline(this@MainActivity)
         }
-        catch(e : Exception) {
+        catch (e: Exception) {
             Log.d("Internet Error", e.toString())
         }
 
@@ -68,13 +68,15 @@ class MainActivity : AppCompatActivity() {
             recyclerView.adapter = adapter
 
             diaryViewModel = ViewModelProvider(this@MainActivity)[DiaryViewModel::class.java]
-            diaryViewModel?.getDiaries()?.observe(this@MainActivity, object : Observer<List<Diary>>{
-                override fun onChanged(t: List<Diary>?) {
-                    if (t != null) {
-                        adapter.setDiaries(t)
+            diaryViewModel?.getDiaries()?.observe(
+                this@MainActivity,
+                object : Observer<List<Diary>> {
+                    override fun onChanged(t: List<Diary>?) {
+                        if (t != null) {
+                            adapter.setDiaries(t)
+                        }
                     }
-                }
-            })
+                })
 
             val itemTouchHelperCallback =
                 object :
@@ -112,6 +114,10 @@ class MainActivity : AppCompatActivity() {
             })
             createNotificationChannel()
             notifyBroadcast()
+
+            startService(Intent(this@MainActivity, CountDownTimerService::class.java))
+            registerReceiver(uiUpdated, IntentFilter("COUNTDOWN_UPDATED"))
+
         }
     }
 
@@ -210,7 +216,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun isOnline(context: Context): Boolean {
+    private fun isOnline(context: Context): Boolean {
         val connectivityManager =
             context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         if (connectivityManager != null) {
@@ -230,5 +236,25 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return false
+    }
+
+    private val uiUpdated: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+            //This is the part where I get the timer value from the service and I update it every second, because I send the data from the service every second. The coundtdownTimer is a MenuItem
+//            countdownTimer.setTitle(intent.extras!!.getString("countdown"))
+            val extras = intent.extras
+            if (extras != null) {
+                val state = extras.getString("countdown")
+                Log.w("Countdown selesai", state)
+                if (state == "FINISH") {
+                    val intent = Intent(this@MainActivity, PopUpWindow::class.java)
+                    intent.putExtra("popuptitle", "Are you ok?")
+                    intent.putExtra("popuptext", "You've been staring for too long")
+                    intent.putExtra("popupbtn", "Close")
+                    intent.putExtra("darkstatusbar", false)
+                    startActivity(intent)
+                }
+            }
+        }
     }
 }
