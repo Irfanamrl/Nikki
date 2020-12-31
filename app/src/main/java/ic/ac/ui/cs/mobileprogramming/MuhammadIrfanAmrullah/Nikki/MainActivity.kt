@@ -6,8 +6,12 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.net.NetworkInfo
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -19,6 +23,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ic.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import java.lang.Exception
 
 
 class MainActivity : AppCompatActivity() {
@@ -28,68 +33,86 @@ class MainActivity : AppCompatActivity() {
     }
 
     private var diaryViewModel: DiaryViewModel? = null
+    private var internet: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var buttonAddDiary : FloatingActionButton = findViewById(R.id.button_add_diary)
-        buttonAddDiary.setOnClickListener {
-            val intent = Intent(this@MainActivity, AddEditDiaryActivity::class.java)
-            startActivityForResult(intent, ADD_NOTE_REQUEST)
+        try {
+            internet = isOnline(this@MainActivity)
         }
-        var recyclerView : RecyclerView = findViewById((R.id.recycler_view))
-        recyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
-        recyclerView.setHasFixedSize((true))
+        catch(e : Exception) {
+            Log.d("Internet Error", e.toString())
+        }
 
-        val adapter = DiaryAdapter()
-        recyclerView.adapter = adapter
-
-        diaryViewModel = ViewModelProvider(this@MainActivity)[DiaryViewModel::class.java]
-        diaryViewModel?.getDiaries()?.observe(this@MainActivity, object : Observer<List<Diary>>{
-            override fun onChanged(t: List<Diary>?) {
-                if (t != null) {
-                    adapter.setDiaries(t)
-                }
-            }
-        })
-
-        val itemTouchHelperCallback =
-            object :
-                ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
-                override fun onMove(
-                    recyclerView: RecyclerView,
-                    viewHolder: RecyclerView.ViewHolder,
-                    target: RecyclerView.ViewHolder
-                ): Boolean {
-                    return false
-                }
-
-                override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                    diaryViewModel?.deleteDiary(adapter.getDiaryAt(viewHolder.adapterPosition))
-                    Toast.makeText(
-                        this@MainActivity,
-                        getString(R.string.deleted_diary),
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-
-            }
-
-        ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView)
-
-        adapter.setOnItemClickListener(object : DiaryAdapter.OnItemClickListener {
-            override fun onItemClick(diary: Diary?) {
+        if(!internet) {
+            val intent = Intent(this, PopUpWindow::class.java)
+            intent.putExtra("popuptitle", "Warning!")
+            intent.putExtra("popuptext", "Internet Needed to Use the App")
+            intent.putExtra("popupbtn", "Close")
+            intent.putExtra("darkstatusbar", false)
+            startActivity(intent)
+        }
+        else {
+            var buttonAddDiary : FloatingActionButton = findViewById(R.id.button_add_diary)
+            buttonAddDiary.setOnClickListener {
                 val intent = Intent(this@MainActivity, AddEditDiaryActivity::class.java)
-                intent.putExtra(AddEditDiaryActivity.EXTRA_ID, diary?.id)
-                intent.putExtra(AddEditDiaryActivity.EXTRA_TITLE, diary?.title)
-                intent.putExtra(AddEditDiaryActivity.EXTRA_DESCRIPTION, diary?.description)
-                intent.putExtra(AddEditDiaryActivity.EXTRA_LOCATION, diary?.location)
-                startActivityForResult(intent, EDIT_NOTE_REQUEST)
+                startActivityForResult(intent, ADD_NOTE_REQUEST)
             }
-        })
-        createNotificationChannel()
-        notifyBroadcast()
+            var recyclerView : RecyclerView = findViewById((R.id.recycler_view))
+            recyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
+            recyclerView.setHasFixedSize((true))
+
+            val adapter = DiaryAdapter()
+            recyclerView.adapter = adapter
+
+            diaryViewModel = ViewModelProvider(this@MainActivity)[DiaryViewModel::class.java]
+            diaryViewModel?.getDiaries()?.observe(this@MainActivity, object : Observer<List<Diary>>{
+                override fun onChanged(t: List<Diary>?) {
+                    if (t != null) {
+                        adapter.setDiaries(t)
+                    }
+                }
+            })
+
+            val itemTouchHelperCallback =
+                object :
+                    ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+                    override fun onMove(
+                        recyclerView: RecyclerView,
+                        viewHolder: RecyclerView.ViewHolder,
+                        target: RecyclerView.ViewHolder
+                    ): Boolean {
+                        return false
+                    }
+
+                    override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                        diaryViewModel?.deleteDiary(adapter.getDiaryAt(viewHolder.adapterPosition))
+                        Toast.makeText(
+                            this@MainActivity,
+                            getString(R.string.deleted_diary),
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                }
+
+            ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(recyclerView)
+
+            adapter.setOnItemClickListener(object : DiaryAdapter.OnItemClickListener {
+                override fun onItemClick(diary: Diary?) {
+                    val intent = Intent(this@MainActivity, AddEditDiaryActivity::class.java)
+                    intent.putExtra(AddEditDiaryActivity.EXTRA_ID, diary?.id)
+                    intent.putExtra(AddEditDiaryActivity.EXTRA_TITLE, diary?.title)
+                    intent.putExtra(AddEditDiaryActivity.EXTRA_DESCRIPTION, diary?.description)
+                    intent.putExtra(AddEditDiaryActivity.EXTRA_LOCATION, diary?.location)
+                    startActivityForResult(intent, EDIT_NOTE_REQUEST)
+                }
+            })
+            createNotificationChannel()
+            notifyBroadcast()
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -186,4 +209,26 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
+    fun isOnline(context: Context): Boolean {
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        if (connectivityManager != null) {
+            val capabilities =
+                connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+            if (capabilities != null) {
+                if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
+                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_CELLULAR")
+                    return true
+                } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
+                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_WIFI")
+                    return true
+                } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)) {
+                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_ETHERNET")
+                    return true
+                }
+            }
+        }
+        return false
+    }
 }

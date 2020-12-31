@@ -1,11 +1,13 @@
 package ic.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki
 
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.location.Address
 import android.location.Geocoder
 import android.location.Location
+import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -22,6 +24,7 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
+import kotlinx.android.synthetic.main.activity_add_diary.*
 import java.io.IOException
 import java.util.*
 
@@ -31,12 +34,17 @@ class AddEditDiaryActivity : AppCompatActivity() {
         var EXTRA_TITLE : String = "ic.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.EXTRA_TITLE"
         var EXTRA_DESCRIPTION : String = "ic.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.EXTRA_DESCRIPTION"
         var EXTRA_LOCATION : String = "ic.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.EXTRA_LOCATION"
+        //image pick code
+        val IMAGE_PICK_CODE = 1000;
+        //Permission code
+        val PERMISSION_CODE = 1001;
     }
 
     private var editTextTitle: EditText? = null
     private var editTextDescription: EditText? = null
     private var editTextLocation: TextView? = null
     private var btLocation: Button? = null
+    private var img_pick_btn: Button? = null
     private var fusedLocationProviderClient: FusedLocationProviderClient? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,6 +55,7 @@ class AddEditDiaryActivity : AppCompatActivity() {
         editTextDescription = findViewById(R.id.edit_text_description)
         editTextLocation = findViewById(R.id.edit_text_location)
         btLocation = findViewById(R.id.bt_location)
+        img_pick_btn = findViewById(R.id.img_pick_btn)
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this@AddEditDiaryActivity)
         btLocation?.setOnClickListener {
@@ -70,7 +79,61 @@ class AddEditDiaryActivity : AppCompatActivity() {
             title = getString(R.string.add_title_diary)
         }
 
+        img_pick_btn?.setOnClickListener {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                if (checkSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE) ==
+                    PackageManager.PERMISSION_DENIED){
+                    //permission denied
+                    val permissions = arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE);
+                    //show popup to request runtime permission
+                    requestPermissions(permissions, PERMISSION_CODE);
+                }
+                else{
+                    //permission already granted
+                    pickImageFromGallery();
+                }
+            }
+            else{
+                //system OS is < Marshmallow
+                pickImageFromGallery();
+            }
+        }
+    }
 
+    private fun pickImageFromGallery() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, IMAGE_PICK_CODE)
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        when(requestCode){
+            PERMISSION_CODE -> {
+                if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    pickImageFromGallery()
+                }
+                else {
+//                    Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, PopUpWindow::class.java)
+                    intent.putExtra("popuptitle", "Warning!")
+                    intent.putExtra("popuptext", "Permission needed to access photos on gallery")
+                    intent.putExtra("popupbtn", "Close")
+                    intent.putExtra("darkstatusbar", false)
+                    startActivity(intent)
+                }
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == IMAGE_PICK_CODE){
+            image_view.setImageURI(data?.data)
+        }
     }
 
     private fun saveDiary() {
