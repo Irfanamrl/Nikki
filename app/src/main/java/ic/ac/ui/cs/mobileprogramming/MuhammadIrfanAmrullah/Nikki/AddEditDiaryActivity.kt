@@ -38,6 +38,9 @@ class AddEditDiaryActivity : AppCompatActivity() {
         val IMAGE_PICK_CODE = 1000;
         //Permission code
         val PERMISSION_CODE = 1001;
+        init {
+            System.loadLibrary("native-lib")
+        }
     }
 
     private var editTextTitle: EditText? = null
@@ -219,4 +222,6 @@ class AddEditDiaryActivity : AppCompatActivity() {
             }
         })
     }
+
+    external fun randEmotion() : String
 }
