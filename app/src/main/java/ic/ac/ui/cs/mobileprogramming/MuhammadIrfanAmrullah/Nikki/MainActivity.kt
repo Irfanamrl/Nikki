@@ -109,6 +109,8 @@ class MainActivity : AppCompatActivity() {
                     intent.putExtra(AddEditDiaryActivity.EXTRA_TITLE, diary?.title)
                     intent.putExtra(AddEditDiaryActivity.EXTRA_DESCRIPTION, diary?.description)
                     intent.putExtra(AddEditDiaryActivity.EXTRA_LOCATION, diary?.location)
+                    intent.putExtra(AddEditDiaryActivity.EXTRA_EMOTION, diary?.emotion)
+                    intent.putExtra(AddEditDiaryActivity.EXTRA_URI, diary?.uri)
                     startActivityForResult(intent, EDIT_NOTE_REQUEST)
                 }
             })
@@ -128,8 +130,10 @@ class MainActivity : AppCompatActivity() {
             var title = data?.getStringExtra(AddEditDiaryActivity.EXTRA_TITLE)
             var description = data?.getStringExtra(AddEditDiaryActivity.EXTRA_DESCRIPTION)
             var location = data?.getStringExtra(AddEditDiaryActivity.EXTRA_LOCATION)
+            var emotion = data?.getStringExtra(AddEditDiaryActivity.EXTRA_EMOTION)
+            var uri = data?.getStringExtra(AddEditDiaryActivity.EXTRA_URI)
 
-            val diary = Diary(title = title, description = description, location = location)
+            val diary = Diary(title = title, description = description, location = location, emotion = emotion, uri = uri)
             diaryViewModel?.insertDiary(diary)
 
             Toast.makeText(this, getString(R.string.saved_diary), Toast.LENGTH_SHORT).show()
@@ -145,8 +149,10 @@ class MainActivity : AppCompatActivity() {
             var title = data?.getStringExtra(AddEditDiaryActivity.EXTRA_TITLE)
             var description = data?.getStringExtra(AddEditDiaryActivity.EXTRA_DESCRIPTION)
             var location = data?.getStringExtra(AddEditDiaryActivity.EXTRA_LOCATION)
+            var emotion = data?.getStringExtra(AddEditDiaryActivity.EXTRA_EMOTION)
+            var uri = data?.getStringExtra(AddEditDiaryActivity.EXTRA_URI)
 
-            val diary = Diary(title = title, description = description, location = location)
+            val diary = Diary(title = title, description = description, location = location, emotion = emotion, uri = uri)
             if (id != null) {
                 diary.id = id
             }

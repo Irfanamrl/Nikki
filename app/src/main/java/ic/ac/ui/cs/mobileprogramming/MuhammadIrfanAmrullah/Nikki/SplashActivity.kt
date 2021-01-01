@@ -5,15 +5,23 @@ import android.os.Bundle
 import android.os.Handler
 import android.content.Intent
 import ic.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.R
+import ic.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.openGL.OpenGLView
+import kotlinx.android.synthetic.main.activity_splash.*
 
 class SplashActivity : AppCompatActivity() {
     companion object {
         private val SPLASH_TIME_OUT:Long = 3000 // 1 sec
+
     }
+
+    private lateinit var openGLView : OpenGLView
+
     // This is the loading time of the splash screen
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
+
+        openGLView = OpenGLView(this)
+        setContentView(openGLView)
 
 
         Handler().postDelayed({
@@ -25,5 +33,15 @@ class SplashActivity : AppCompatActivity() {
             // close this activity
             finish()
         }, SPLASH_TIME_OUT)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        openGLView.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        openGLView.onPause()
     }
 }

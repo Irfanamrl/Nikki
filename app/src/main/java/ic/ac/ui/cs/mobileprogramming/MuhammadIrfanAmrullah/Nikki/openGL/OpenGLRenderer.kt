@@ -4,11 +4,18 @@ import android.opengl.GLES20
 import android.opengl.GLSurfaceView
 import javax.microedition.khronos.egl.EGLConfig
 import javax.microedition.khronos.opengles.GL10
+import kotlin.math.sin
 
 class OpenGLRenderer : GLSurfaceView.Renderer {
+    companion object{
+        const val FLASH_DURATION: Double = 1000.0
+    }
+
+    private var redValue : Double = 1.0
+
     override fun onSurfaceCreated(unused: GL10, config: EGLConfig) {
         // Set the background frame color
-        GLES20.glClearColor(1.0f, 0.0f, 0.0f, 1.0f)
+        GLES20.glClearColor(redValue.toFloat(), 0.0f, 0.0f, 1.0f)
     }
 
     override fun onSurfaceChanged(unused: GL10, width: Int, height: Int) {
@@ -17,7 +24,10 @@ class OpenGLRenderer : GLSurfaceView.Renderer {
 
     override fun onDrawFrame(unused: GL10) {
         // Redraw background color
+        GLES20.glClearColor(redValue.toFloat(), 0f, 0f, 1f)
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT)
+
+        redValue = ((sin(System.currentTimeMillis() * 2 * Math.PI / FLASH_DURATION) * 0.5) +0.5)
     }
 
 }

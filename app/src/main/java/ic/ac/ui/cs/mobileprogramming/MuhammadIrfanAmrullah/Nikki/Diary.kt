@@ -22,4 +22,10 @@ data class Diary(
     @ColumnInfo(name="location")
     var location: String?,
 
+    @ColumnInfo(name = "emotion")
+    var emotion: String?,
+
+    @ColumnInfo(name = "uri")
+    var uri: String?,
+
 )

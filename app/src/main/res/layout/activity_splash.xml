@@ -11,43 +11,43 @@
 
     <!-- Don't worry about the id names I have named the id's with reference to the file name for consistency -->
 
-<!--    <ic.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.openGL.OpenGLView-->
-<!--        android:id="@+id/openGLView"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent" />-->
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:layout_gravity="center"
-        android:src="@drawable/nikkii" />
-
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="35dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/imageView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:layout_gravity="center"
-        android:indeterminateTint="@color/turqo2"/>
-
-    <TextView
-        android:id="@+id/textView1"
+    <ic.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.openGL.OpenGLView
+        android:id="@+id/openGLView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/progressBar"
-        android:gravity="center"
-        android:layout_marginTop="170dp"
-        android:padding="15dp"
-        android:text="From Irfan"
-        android:textColor="@color/turqo2"
-        android:textSize="15dp"
-        android:textStyle="bold"
-        android:textAlignment="center"/>
+        android:layout_height="match_parent" />
+
+<!--    <ImageView-->
+<!--        android:id="@+id/imageView"-->
+<!--        android:layout_width="150dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="200dp"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:src="@drawable/nikkii" />-->
+
+
+<!--    <ProgressBar-->
+<!--        android:id="@+id/progressBar"-->
+<!--        android:layout_width="35dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/imageView"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:indeterminateTint="@color/turqo2"/>-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/textView1"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/progressBar"-->
+<!--        android:gravity="center"-->
+<!--        android:layout_marginTop="170dp"-->
+<!--        android:padding="15dp"-->
+<!--        android:text="From Irfan"-->
+<!--        android:textColor="@color/turqo2"-->
+<!--        android:textSize="15dp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:textAlignment="center"/>-->
 
 
 </LinearLayout>
