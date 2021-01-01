@@ -13,6 +13,6 @@ Java_ic_ac_ui_cs_mobileprogramming_MuhammadIrfanAmrullah_Nikki_AddEditDiaryActiv
     // Initialize String Array
     std::string emotion[3] = { "Sad", "Normal","Happy"};
     int RandIndex = rand() % 3;
-    std::string ans = emotion[RandIndex]
+    std::string ans = emotion[RandIndex];
     return env->NewStringUTF(ans.c_str());
 }

@@ -48,6 +48,8 @@ class AddEditDiaryActivity : AppCompatActivity() {
     private var editTextLocation: TextView? = null
     private var btLocation: Button? = null
     private var img_pick_btn: Button? = null
+    private var emotionButton: Button? = null
+    private var textEmotion: TextView? = null
     private var fusedLocationProviderClient: FusedLocationProviderClient? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,6 +61,8 @@ class AddEditDiaryActivity : AppCompatActivity() {
         editTextLocation = findViewById(R.id.edit_text_location)
         btLocation = findViewById(R.id.bt_location)
         img_pick_btn = findViewById(R.id.img_pick_btn)
+        emotionButton = findViewById(R.id.bt_emotion)
+        textEmotion = findViewById(R.id.emotion_txt)
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this@AddEditDiaryActivity)
         btLocation?.setOnClickListener {
@@ -68,6 +72,10 @@ class AddEditDiaryActivity : AppCompatActivity() {
                 ActivityCompat.requestPermissions(this@AddEditDiaryActivity,
                     arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), 44)
             }
+        }
+
+        emotionButton?.setOnClickListener{
+            textEmotion?.text = randEmotion()
         }
 
         supportActionBar?.setHomeAsUpIndicator(drawable.ic_close)
@@ -223,5 +231,6 @@ class AddEditDiaryActivity : AppCompatActivity() {
         })
     }
 
-    external fun randEmotion() : String
+
+    private external fun randEmotion() : String
 }
