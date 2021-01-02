@@ -9,7 +9,7 @@
 #include <time.h>
 
 extern "C" JNIEXPORT jstring JNICALL
-Java_id_ac_ui_cs_mobileprogramming_MuhammadIrfanAmrullah_Nikki_AddEditDiaryActivity_randEmotion( JNIEnv *env, jobject /* this */) {
+Java_id_ac_ui_cs_mobileprogramming_MuhammadIrfanAmrullah_Nikki_ui_activity_AddEditDiaryActivity_randEmotion( JNIEnv *env, jobject /* this */) {
     // Initialize String Array
     std::string emotion[3] = { "Sad", "Normal","Happy"};
     int RandIndex = rand() % 3;
