@@ -1,4 +1,4 @@
-package id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki
+package id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.database.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

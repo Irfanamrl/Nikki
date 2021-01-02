@@ -1,7 +1,8 @@
-package id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki
+package id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.database.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.database.entity.Diary
 
 @Dao
 interface DiaryDao {

@@ -1,7 +1,10 @@
-package id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki
+package id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.repository
 
 import android.app.Application
 import androidx.lifecycle.LiveData
+import id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.database.DiaryDatabase
+import id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.database.dao.DiaryDao
+import id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.database.entity.Diary
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking

@@ -1,4 +1,4 @@
-package id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki
+package id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.ui.activity
 
 import android.app.Activity
 import android.content.Intent
@@ -20,6 +20,7 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
+import id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.ui.dialog.PopUpWindow
 import id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.R
 import id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.R.drawable
 import kotlinx.android.synthetic.main.activity_add_diary.*

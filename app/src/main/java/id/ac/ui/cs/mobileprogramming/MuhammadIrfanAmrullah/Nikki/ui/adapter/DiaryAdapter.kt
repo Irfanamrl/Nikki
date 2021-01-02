@@ -1,4 +1,4 @@
-package id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki
+package id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.R
+import id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.database.entity.Diary
 
 class DiaryAdapter : RecyclerView.Adapter<DiaryAdapter.DiaryHolder>() {
 

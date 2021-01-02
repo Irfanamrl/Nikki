@@ -1,4 +1,4 @@
-package id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki
+package id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

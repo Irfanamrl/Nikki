@@ -1,4 +1,4 @@
-package id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki
+package id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.ui.dialog
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter

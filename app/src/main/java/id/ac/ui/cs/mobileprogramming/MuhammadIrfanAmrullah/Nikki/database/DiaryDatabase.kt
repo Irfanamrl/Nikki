@@ -1,9 +1,11 @@
-package id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki
+package id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.database.dao.DiaryDao
+import id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.database.entity.Diary
 
 @Database(entities = [Diary::class], exportSchema = false, version = 1)
 abstract class DiaryDatabase : RoomDatabase() {

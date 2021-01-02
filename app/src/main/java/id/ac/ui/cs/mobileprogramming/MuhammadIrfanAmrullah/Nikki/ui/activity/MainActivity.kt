@@ -1,4 +1,4 @@
-package id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki
+package id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.ui.activity
 
 import android.app.AlarmManager
 import android.app.NotificationChannel
@@ -23,6 +23,13 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.ui.dialog.PopUpWindow
+import id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.R
+import id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.broadcastListener.ReminderBroadcast
+import id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.database.entity.Diary
+import id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.service.CountDownTimerService
+import id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.ui.adapter.DiaryAdapter
+import id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.ui.viewmodel.DiaryViewModel
 
 
 class MainActivity : AppCompatActivity() {
