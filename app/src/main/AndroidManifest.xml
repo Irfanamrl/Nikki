@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="ic.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki">
+    package="id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -17,9 +17,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PopUpWindow"></activity>
+        <activity android:name="ic.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.PopUpWindow"></activity>
         <activity
-            android:name=".SplashActivity"
+            android:name="ic.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,7 +28,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="ic.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.MainActivity"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,10 +37,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AddEditDiaryActivity"
-            android:parentActivityName=".MainActivity" />
+            android:name="ic.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.AddEditDiaryActivity"
+            android:parentActivityName="ic.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.MainActivity" />
 
-        <receiver android:name=".ReminderBroadcast" />
-        <service android:name=".CountDownTimerService"/>
+        <receiver android:name="ic.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.ReminderBroadcast" />
+        <service android:name="ic.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.CountDownTimerService"/>
     </application>
 </manifest>

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context="ic.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.AddEditDiaryActivity">
+    tools:context="ic.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.id.ac.ui.cs.mobileprogramming.MuhammadIrfanAmrullah.Nikki.AddEditDiaryActivity">
 
     <EditText
         android:id="@+id/edit_text_title"
