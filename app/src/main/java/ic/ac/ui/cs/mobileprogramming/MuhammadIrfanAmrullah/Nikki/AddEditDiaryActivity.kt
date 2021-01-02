@@ -262,19 +262,4 @@ class AddEditDiaryActivity : AppCompatActivity() {
 
 
     private external fun randEmotion() : String
-
-    private fun getPathFromURI(context: Context, contentUri: Uri): String? {
-        var mediaCursor: Cursor? = null
-        return try {
-            val dataPath = arrayOf(MediaStore.Images.Media.DATA)
-            mediaCursor = context.contentResolver.query(contentUri, dataPath, null, null, null)
-            val column_index: Int? = mediaCursor?.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
-            mediaCursor?.moveToFirst()
-            mediaCursor?.getString(column_index!!)
-        } finally {
-            if (mediaCursor != null) {
-                mediaCursor.close()
-            }
-        }
-    }
 }
